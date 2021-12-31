@@ -17,3 +17,5 @@ class Parameter {
         return decodeURIComponent(results[2].replace(/\+/g, ' '))
     }
 }
+
+module.exports = Parameter;
