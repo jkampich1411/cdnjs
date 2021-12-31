@@ -4,7 +4,11 @@ class Parameter {
         this.href = url || null;
     }
 
-    get get(parameter, url = window.location.href) {
+    get get() {
+        this.pull(this.param, this.href);
+    }
+
+    pull(parameter, url = window.location.href) {
         name = name.replace(/[\[\]]/g, '\\$&');
         var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
             results = regex.exec(url);
