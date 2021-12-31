@@ -1,14 +1,10 @@
 class Parameter {
     constructor(parameter, url = window.location.href) {
-        this.param = parameter;
-        this.href = url;
+        this.param = parameter || null;
+        this.href = url || null;
     }
 
-    get get() {
-        return this.parameter(this.param, this.href);
-    }
-
-    parameter(par, url) {
+    get get(parameter, url = window.location.href) {
         name = name.replace(/[\[\]]/g, '\\$&');
         var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
             results = regex.exec(url);
