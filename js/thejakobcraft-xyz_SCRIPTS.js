@@ -23,7 +23,9 @@
     }
 
     function Warp(param = null) {
-        if(!param) return console.log(`parameter null rejected`);
+        isLoggedIn = checkLoggedInOrOut();
+        
+        if(!param) return console.log(`Parameter null rejected`);
         if(param) {
             console.log(`parameter ${param} recived`);
             
@@ -31,19 +33,19 @@
                 window.location.replace('https://thejakobcraft.xyz/wp-admin')
             } else
             if(param === "auth-azuresession") {
-                if(typeof submitSamlForm !== 'undefined' && typeof submitSamlForm === 'function') return window.location.replace('https://thejakobcraft.xyz/?redirect=auth-azuresso');
+                if(isLoggedIn = false) return window.location.replace('https://thejakobcraft.xyz/?redirect=auth-azuresso');
                 
-                if(typeof submitSamlForm === 'undefined' && typeof submitSamlForm !== 'function') return window.location.replace('https://thejakobcraft.xyz/?redirect=logout');
+                if(isLoggedIn = true) return window.location.replace('https://thejakobcraft.xyz/?redirect=logout');
             } else
             if(param === "auth-azuresso") {
-                if(typeof submitSamlForm !== 'undefined' && typeof submitSamlForm === 'function') return window.location.replace('javascript:submitSamlForm()');
+                if(isLoggedIn = false) return window.location.replace('javascript:submitSamlForm()');
                 
-                if(typeof submitSamlForm === 'undefined' && typeof submitSamlForm !== 'function') return window.location.replace('https://thejakobcraft.xyz/');
+                if(isLoggedIn = true) return window.location.replace('https://thejakobcraft.xyz/');
             } else
             if(param === "logout") {
-                if(typeof submitSamlForm !== 'undefined' && typeof submitSamlForm === 'function') return window.location.replace('https://thejakobcraft.xyz/');
+                if(isLoggedIn = false) return window.location.replace('https://thejakobcraft.xyz/');
                 
-                if(typeof submitSamlForm === 'undefined' && typeof submitSamlForm !== 'function') return window.location.replace('https://thejakobcraft.xyz/wp-login.php?action=logout&redirect_to=https%3A%2F%2Fthejakobcraft.xyz%2F');
+                if(isLoggedIn = true) return window.location.replace('https://thejakobcraft.xyz/wp-login.php?action=logout&redirect_to=https%3A%2F%2Fthejakobcraft.xyz%2F');
             } else
             if(param === "youtube") {
                 window.location.replace('https://youtube.com/thejakobcraft');
@@ -51,9 +53,9 @@
             if(param === "twitch") {
                 window.location.replace('https://twitch.tv/thejakobcrafttv');
             } else
-            if(param === "teamsees") {
+            if(param === "teamseas") {
                 window.location.replace('https://teamseas.org/?team_name=theJakobcraft');   
-            } else return window.alert(`Unknown Parameter ${param}`);
+            } else return window.alert(`Parameter ${param} rejected`);
         };
     }
     
@@ -70,7 +72,9 @@
     }
     
     function ReplaceLoginName() {
-        if(typeof submitSamlForm !== 'undefined' && typeof submitSamlForm === 'function') {
+        let isLoggedIn = checkLoggedInOrOut();
+        
+        if(isLoggedIn = true) {
             
             // Saml Submit does exist
             // => logged out!
@@ -80,7 +84,7 @@
             console.log("aad_login: logged_out");
         };
                 
-        if(typeof submitSamlForm === 'undefined' && typeof submitSamlForm !== 'function') {
+        if(isLoggedIn = false) {
             // Saml Submit doesn't exist
             // => logged in!
             var LoggedInHtml = "<b>Log Out</b>";
@@ -89,3 +93,8 @@
             console.log("aad_login: logged_in");
         };
     }
+
+function checkLoggedInOrOut() {
+    if(typeof submitSamlForm !== 'undefined' && typeof submitSamlForm === 'function') return true;
+    if(typeof submitSamlForm === 'undefined' && typeof submitSamlForm !== 'function') return false;
+}
