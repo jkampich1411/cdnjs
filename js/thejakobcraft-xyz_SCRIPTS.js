@@ -33,19 +33,19 @@
                 window.location.replace('https://thejakobcraft.xyz/wp-admin')
             } else
             if(param === "auth-azuresession") {
-                if(isLoggedIn = false) return window.location.replace('https://thejakobcraft.xyz/?redirect=auth-azuresso');
+                if(isLoggedIn = true) return window.location.replace('https://thejakobcraft.xyz/?redirect=auth-azuresso');
                 
-                if(isLoggedIn = true) return window.location.replace('https://thejakobcraft.xyz/?redirect=logout');
+                if(isLoggedIn = false) return window.location.replace('https://thejakobcraft.xyz/?redirect=logout');
             } else
             if(param === "auth-azuresso") {
-                if(isLoggedIn = false) return window.location.replace('javascript:submitSamlForm()');
+                if(isLoggedIn = true) return window.location.replace('javascript:submitSamlForm()');
                 
-                if(isLoggedIn = true) return window.location.replace('https://thejakobcraft.xyz/');
+                if(isLoggedIn = false) return window.location.replace('https://thejakobcraft.xyz/');
             } else
             if(param === "logout") {
-                if(isLoggedIn = false) return window.location.replace('https://thejakobcraft.xyz/');
+                if(isLoggedIn = true) return window.location.replace('https://thejakobcraft.xyz/');
                 
-                if(isLoggedIn = true) return window.location.replace('https://thejakobcraft.xyz/wp-login.php?action=logout&redirect_to=https%3A%2F%2Fthejakobcraft.xyz%2F');
+                if(isLoggedIn = false) return window.location.replace('https://thejakobcraft.xyz/wp-login.php?action=logout&redirect_to=https%3A%2F%2Fthejakobcraft.xyz%2F');
             } else
             if(param === "youtube") {
                 window.location.replace('https://youtube.com/thejakobcraft');
